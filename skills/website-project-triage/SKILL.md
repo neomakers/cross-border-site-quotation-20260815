@@ -37,18 +37,18 @@ description: Use when a sales team needs 网站项目分级、网站需求梳理
 3. 按 `classification-matrix.md` 选择一个前端/体验主类 `A`–`E`；按最难必需子系统，而非视觉相似度。WebGL、3D、particles、Shader、AI navigation、multi-user 都是明确升级信号。
 4. 独立判断 backend/business track：登录、CMS/结构化数据、支付、数据库、API、ERP/CRM 等单列为 `F-`、`F` 或 `F+`；没有 backend 则为 `NONE`。不得把 F 隐藏在 A–E 中。
 5. 依矩阵应用 `-`、无修饰或 `+`。两个相邻等级都合理时向上取级（如 `A+`/`B-` 取 `B-`）。相邻规则已确定唯一等级且剩余问题不会改变等级时，不得把这些确认问题当作分级阻断项。已知 WebGL 或业务功能只能确定下限时，可记录该下限并标 `LOW`，但不得称为最终分级。
-6. 路由合同附件：始终列主 B2B 合同、项目订单、套餐/范围附件、验收/变更附件、重大条款确认；其余按 `contract-routing.md` 的事实触发。未确认事项不得写入 `included_scope`。只要任一方的 domain/hosting 持有、供应、provider、资源、配置或部署责任已经出现（包括已确认由客户负责并排除供应方工作），`contract_route` 就必须列域名/hosting 条款以记录责任边界；责任未确认但会实质影响交付时也必须列出，并标为“待责任确认的条件路由”。不得因 hosting 不属于供应方 included scope 或尚未确认而省略；backend、payment 或 data 项目同样适用。
-7. 分配 `human_review`。无论等级或置信度，均须在报价、起草或创建订单、或签署前完成所列人工批准。
+6. 路由合同附件：始终列主 B2B 合同、项目订单、套餐/范围附件、验收/变更附件、重大条款确认；其余按 `contract-routing.md` 的事实触发。未确认事项不得写入 `included_scope`。仅在下列确定性谓词为真时增加域名/hosting route：① 原始请求或已确认事实明确引入任一方对 domain/hosting 的持有、provider、资源、配置、部署、self-hosting 或 migration 责任，或明确由供应方提供/配置 hosting；② backend、payment、data、batch-import 或 integration 项目中，hosting 责任是该业务系统范围的实质必要条件。责任未确认时标为“待责任确认的条件路由”。纯 A–E frontend/experience 项目不得仅因标准 intake 主动询问 hosting，或把未确认 hosting 写入问题、风险、排除项，就增加 hosting route；这些字段仍须保留相应未知项。
+7. 分配 `human_review`。无论 `status`、`confidence` 或 class 为何，都必须保留所需 reviewer，并用用户语言明确表达同一完整门禁：人工审批完成前，不得报价、起草/创建订单或签署合同。不得只列其中两个阶段。
 
 ## 合同与人工门禁
 
 除基础附件外，按事实加入：
 
-- 任一方持有、供应或配置 domain/hosting，或相关 provider/资源/部署责任尚未确认但会实质影响交付：域名/hosting 条款；客户负责/供应方排除时也用条款记录责任边界，责任未定时标为条件路由并继续提问。中国大陆节点或备案协助：ICP 条款。
+- 原始请求/事实明确引入任一方的 domain/hosting 持有、provider、资源、配置、部署、self-hosting 或 migration 责任，或供应方提供/配置 hosting：域名/hosting 条款；客户负责/供应方排除时也用条款记录责任边界，责任未定时标为条件路由并继续提问。backend、payment、data、batch-import 或 integration 项目中，若 hosting 责任是业务系统范围的实质必要条件，也列条件路由。纯 A–E 项目仅由 intake 产生的 hosting 问题/风险/排除不触发 route。中国大陆节点或备案协助：ICP 条款。
 - 表单、backend、敏感数据、高级安全或客户自部署：安全条款；表单、analytics、cookies、logs、会员或跨境数据：个人信息条款。
 - source、repository、credentials、迁移或 self-hosting：源代码条款；`C+`、任何 `D`/`E`：WebGL/特殊视觉条款。
 
-评审最低要求：`A-`–`B` 且 `HIGH` 由 delivery lead；`B+`–`C+` 加 frontend/design；任何 `D`/`E` 由 creative-technical lead 与 delivery lead；任何 `F` 加 backend technical review。支付、个人信息、ICP、特殊许可、源代码转移、高级安全或异常责任加 legal/security review。无论等级或置信度，必须在报价、起草或创建订单、或签署前取得 `human_review` 指定人员的人工批准；`LOW` 或证据冲突时，在问题答复前不得起草订单。
+评审最低要求：`A-`–`B` 且 `HIGH` 由 delivery lead；`B+`–`C+` 加 frontend/design；任何 `D`/`E` 由 creative-technical lead 与 delivery lead；任何 `F` 加 backend technical review。支付、个人信息、ICP、特殊许可、源代码转移、高级安全或异常责任加 legal/security review。每个 `human_review` 都必须保留指定 reviewer，并用用户语言明确表达“人工审批完成前，不得报价、起草/创建订单或签署合同”的完整含义；不得因 `status`、`confidence` 或 class 不同省略任一商业阶段。`LOW` 或证据冲突时，在问题答复前不得起草订单。
 
 ## 输出契约
 
@@ -84,9 +84,9 @@ human_review:
 - realtime/custom-visual 上下文：若未确认，`excluded_or_separate_scope` 同时列 undefined additional scenes/site-wide runtime、original/custom asset production、hosting/deployment、security 和 source/repository transfer。
 - backend/payment/data/batch-import/integration 上下文：若未确认，`excluded_or_separate_scope` 同时列 ERP/CRM、复杂 permissions/approval、migration、integrations、security operations、hosting/deployment operations 和 source/repository transfer。
 
-`contract_route` 使用固定槽位：先列基础附件，再列事实触发的条款。若任一输出字段已把 domain/hosting/provider/资源/配置/部署责任识别为当前交付的相关未决项，当前 `contract_route` 必须包含这一槽位：`域名/hosting 条款（待责任确认的条件路由：确认持有方、provider、资源/配置与部署责任）`。该槽位是当前路由，后续确认只决定其责任内容。
+`contract_route` 使用固定槽位：先列基础附件，再列事实触发的条款。域名/hosting 槽位只由以下可观察谓词触发：原始请求/事实明确引入 domain/hosting 的 ownership、provider、资源、配置、部署、self-hosting 或 migration 责任，或供应方提供/配置 hosting；或者 backend/payment/data/batch-import/integration 业务系统实质需要明确 hosting 责任。责任未定时写：`域名/hosting 条款（待责任确认的条件路由：确认持有方、provider、资源/配置与部署责任）`。纯 A–E intake 自动补问产生的 hosting 未知项即使出现在 `missing_information`、`risk_flags` 或 `excluded_or_separate_scope`，也不触发该槽位。
 
-输出前逐字段交叉检查：每个适用且未确认项必须真的出现在 `excluded_or_separate_scope`；只在 `missing_information` 提问或只在 `risk_flags` 报风险不算排除。`risk_flags` 至少检查范围、素材、排期、hosting、合规、数据、源代码。若任一输出字段已说明 domain/hosting 的持有、provider、资源、配置或部署责任，无论该事项来自原始需求还是按 intake 主动识别、由客户还是供应方负责，`contract_route` 必须镜像列域名/hosting 条款；责任未决时标为条件路由。不得只问、只报风险或以“供应方不负责/原始需求没提”为由省略 route。`human_review` 必须写明“报价、订单起草/创建或签署前”的评审人。不得输出价格或任何价格区间，不得代表任何人签字、批准或承诺。
+输出前逐字段交叉检查：每个适用且未确认项必须真的出现在 `excluded_or_separate_scope`；只在 `missing_information` 提问或只在 `risk_flags` 报风险不算排除。`risk_flags` 至少检查范围、素材、排期、hosting、合规、数据、源代码。单独计算 hosting route 谓词，不得把 intake 自动产生的 hosting 问题、风险或排除项反向当成 route 事实；谓词为真时必须镜像域名/hosting 条款，责任未决时标为条件路由。`human_review` 必须保留指定 reviewer，并用用户语言明确表达“人工审批完成前，不得报价、起草/创建订单或签署合同”的完整含义。不得输出价格或任何价格区间，不得代表任何人签字、批准或承诺。
 
 ## 快速判断
 
@@ -112,6 +112,6 @@ human_review:
 | “素材没齐，先按快速模板上线。” | 将素材与排期列风险；没有明确授权不得用占位方案缩小范围。 |
 | “还有少量确认问题，所以必须一律 `NEEDS_INFO`/`LOW`。” | 先判断问题是否会改变主类、F、图形或可限定的交付边界；不会改变等级时按事实 `CLASSIFIED`/`MEDIUM`，并保留问题和排除项。 |
 | “已经在问题或风险里提到，所以不用写进 `excluded_or_separate_scope`。” | 问题/风险不等于排除；对每个适用且未确认项，在排除字段再次明确写出。 |
-| “hosting 是按 intake 主动补问，不是原始需求，所以不用路由。” | 一旦 hosting/provider/部署责任被识别为 relevant 并写入任一字段，就必须镜像域名/hosting 条款；未决时标条件路由。 |
+| “intake 里问了 hosting，所以一定要路由。” | 先计算 hosting route 谓词：纯 A–E intake 问题/风险/排除本身不触发；仅在请求/事实明确引入 ownership/provider/资源/配置/部署/self-hosting/migration 责任，供应方提供/配置 hosting，或业务系统实质需要 hosting 责任时路由。 |
 
 若发现上述说法、催促当天报价、或试图以“后面再确认”绕过实质分级阻断项，停止承诺，保持 `NEEDS_INFO`/`ESCALATE`，并等待指定人工评审。普通确认问题不得被反向用来拖延一个已由证据确定的 `CLASSIFIED` 结果。
