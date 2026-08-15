@@ -46,7 +46,8 @@ human_review:
 - `backend_class` 不能写入 `primary_class`；无 backend 必须是 `NONE`。
 - `NEEDS_INFO` 必须给 targeted questions；不能把未知项猜成 included scope。
 - `ESCALATE` 必须在 `missing_information` 点名缺失 reference 或冲突，并给 reviewer。
-- `human_review` 必须说明报价、订单起草/创建或签署前的人工批准角色。
+- 每个 `human_review` 都必须保留指定 reviewer，并用用户语言明确表达“人工审批完成前，不得报价、起草/创建订单或签署合同”的完整含义；不得只列两个阶段。
+- host 必须按独立 hosting route 谓词校验：原始请求/事实明确引入 domain/hosting ownership、provider、资源、配置、部署、self-hosting 或 migration 责任，供应方提供/配置 hosting，或 backend/payment/data/batch-import/integration 业务系统实质需要 hosting 责任时才路由；纯 A–E intake 问题/风险/排除不得单独触发。
 - 输出不得包含 price、margin、内部商业规则、私有合同文字、敏感凭据或个人识别信息。
 
 ## 推荐的确定性 Failure Payload
@@ -65,7 +66,7 @@ included_scope: 无；本次未确认任何项目分级或交付范围。
 excluded_or_separate_scope: 全部项目范围保持未确认；不得依据缺失规则作交付假设。
 risk_flags: Reference-loading 完整性失败；继续分类会产生不可复核结果。
 contract_route: 无；修复 reference loading 后重新运行 triage，再选择合同 route。
-human_review: 由 host owner 修复加载，并由 delivery lead 在报价、订单起草/创建或签署前复核。
+human_review: 由 host owner 修复加载，并由 delivery lead 完成人工审批；审批完成前，不得报价、起草/创建订单或签署合同。
 ```
 
 不得删除或重排这些字段，也不得编造缺失文件内容。
