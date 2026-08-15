@@ -1,0 +1,4 @@
+interface:
+  display_name: "网站项目分级助手 / Website Project Triage"
+  short_description: "将独立站需求分为 A–F 并路由合同附件；不输出价格。"
+  default_prompt: "使用 $website-project-triage 判断以下网站需求的 A–F 分类、缺失信息、风险和合同附件，不要报价。"
