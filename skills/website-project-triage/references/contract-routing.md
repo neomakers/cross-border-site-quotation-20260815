@@ -18,7 +18,8 @@
 
 | 已确认条件 | 必须增加或强化的 route | 最低确认内容 | 人工门禁 |
 | --- | --- | --- | --- |
-| 任一方持有、提供或配置 domain/hosting，或 provider、资源、部署责任尚未确认但会实质影响交付 | 域名/hosting 条款；客户负责/供应方排除时仍记录责任边界，未确认时标为“待责任确认的条件路由”且不等于已纳入交付 | 持有方、provider、资源与配置责任、地区、部署 ownership、traffic/storage/bandwidth、备份与迁移边界 | delivery lead；技术责任不清时加 technical review |
+| 原始请求/事实明确引入任一方的 domain/hosting ownership、provider、资源、配置、部署、self-hosting 或 migration 责任，或供应方提供/配置 hosting | 域名/hosting 条款；客户负责/供应方排除时仍记录责任边界，未确认时标为“待责任确认的条件路由”且不等于已纳入交付 | 持有方、provider、资源与配置责任、地区、部署 ownership、traffic/storage/bandwidth、备份与迁移边界 | delivery lead；技术责任不清时加 technical review |
+| backend、payment、data、batch-import 或 integration 项目中，hosting 责任是该业务系统范围的实质必要条件 | 域名/hosting 条款；责任未确认时使用待责任确认的条件路由 | provider、资源/配置、部署与运行责任、地区、容量、备份和业务系统迁移边界 | backend technical + delivery lead；按数据/支付事实加 legal/security review |
 | 中国大陆节点或 ICP filing assistance | ICP 条款 | 主体、协助边界、前置材料、节点与时间依赖 | delivery lead + legal review |
 | form、backend、客户自部署或一般数据处理 | 安全条款（baseline security） | 部署边界、访问责任、常规保护、更新/备份/incident responsibility、验收边界 | backend/technical review；涉及数据时加 security review |
 | 明确要求 WAF/DDoS、audit、monitoring、渗透测试、compliance、特殊 SLA 或类似能力 | 安全条款（advanced security）并在套餐/范围与验收/变更附件中单列 | 产品/服务边界、覆盖环境、指标、报告、第三方依赖、验收方法和持续运维责任 | security + legal + delivery lead review |
@@ -50,5 +51,6 @@
 
 1. 条件可叠加：例如 `D/F` 且含 payment、个人数据和客户自部署时，同时使用标准 route、WebGL/特殊视觉、安全、个人信息和源代码条款。
 2. API 不是独立发明一个附件名；它先进入套餐/范围和验收/变更附件，再按数据、安全与 source 事实触发现有类别。
-3. 未确认的 hosting、security、source、payment 或 integration 必须放入 `missing_information` 或 `excluded_or_separate_scope`，不能当作 included。只要任一方的 hosting/provider/资源/配置/部署责任已经出现，就须在 `contract_route` 列域名/hosting 条款；客户负责或供应方排除时用条款记录边界，责任未决时标为条件路由。不得因为不 included 或未确认而省略，backend、payment 或 data 项目同样适用。
-4. 特殊许可、异常责任、附件冲突或必需 reference 缺失时，返回 `ESCALATE` 并点名 reviewer，不得自行解释或改写法律条款。
+3. 未确认的 hosting、security、source、payment 或 integration 必须放入 `missing_information` 或 `excluded_or_separate_scope`，不能当作 included。域名/hosting route 只由事实触发矩阵的两个 hosting 谓词触发；触发后，客户负责或供应方排除时仍用条款记录边界，责任未决时标为条件路由。纯 A–E 项目仅由标准 intake 产生的 hosting 问题、风险或排除不触发 route；backend/payment/data/batch-import/integration 项目若业务系统实质需要 hosting 责任，则仍触发条件路由。
+4. 每个 `human_review` 都必须保留指定 reviewer，并用用户语言明确表达“人工审批完成前，不得报价、起草/创建订单或签署合同”的完整含义，不得只列两个阶段。
+5. 特殊许可、异常责任、附件冲突或必需 reference 缺失时，返回 `ESCALATE` 并点名 reviewer，不得自行解释或改写法律条款。
