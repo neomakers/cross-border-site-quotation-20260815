@@ -31,7 +31,7 @@
 - `approved_grade`: `primary_class: B-`; `backend_class: NONE`; `confidence: MEDIUM`。
 - `confirmation_questions`: hosting 由谁提供/配置、部署地区与 ICP 是否涉及；这些问题继续保留，但在 hosting 工作明确排除于当前范围时不会改变 `B-`。
 - `reason_for_change`: 页面由标准组件重新组合并形成轻量自定义信息结构；按相邻等级向上规则得到唯一 `B-`。已明确无 backend 与 custom animation，hosting 未决作为排除项和交付风险处理，不是分级阻断项。
-- `contract_routing_outcome`: 标准 route；域名/hosting 条款标为待责任确认的条件路由，hosting 工作不写入 included scope；ICP、source/security 继续按事实确认。
+- `contract_routing_outcome`: 标准 route；hosting 仅作为 intake 确认问题、风险和排除项，不因未知本身增加域名/hosting route；若后续事实触发 ownership/provider/配置/部署责任，再按谓词路由。ICP、source/security 继续按事实确认。
 - `reusable_lesson`: “仍使用标准组件”不等于整站 template；发生有限组件重组时从 B 评估。若主类、F、图形和交付责任已被事实或排除项充分限定，普通确认问题应保留，但不得把确定的相邻等级降为 `NEEDS_INFO`/`LOW`。
 
 ## CASE-003 — Motion 与 WebGL 边界
@@ -41,7 +41,7 @@
 - `initial_grade`: `C+`
 - `approved_grade`: provisional `D-` with `NEEDS_INFO`
 - `reason_for_change`: 实时 3D scene 和 camera/interaction 是 D 的硬性下限，不属于普通 motion；关键信息缺失，不能给最终 D 等级。
-- `contract_routing_outcome`: 标准基础文件加 WebGL/特殊视觉条款；hosting/provider/部署资源责任未确认且影响实时体验交付，因此现在即列待责任确认的域名/hosting 条件路由；source 和 security 保持未确认/排除。
+- `contract_routing_outcome`: 标准基础文件加 WebGL/特殊视觉条款；纯前端/WebGL intake 产生的 hosting 未知项继续写入问题、风险与排除，但不凭未知本身增加 hosting route；source 和 security 保持未确认/排除。
 - `reusable_lesson`: 先识别 rendering technology 和 scene acceptance，再判断 motion 复杂度；不得把 WebGL 留在 C。
 
 ## CASE-004 — 静态外观隐藏业务系统
