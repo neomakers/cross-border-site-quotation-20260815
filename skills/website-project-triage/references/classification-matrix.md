@@ -96,4 +96,4 @@ F 与 A–E 正交，可附加到任何主类。只要客户登录、管理数�
 | 分类矩阵或 intake checklist 无法加载 | `ESCALATE`；写明缺失 reference，不得临时编造。 |
 | 证据互相冲突、出现特殊许可/异常责任或超出矩阵的系统 | `ESCALATE`，交由相应 technical/legal/security reviewer。 |
 
-任何等级都不是报价或合同批准。输出必须保留 `human_review`，并在报价、订单起草/创建或签署前取得指定人工批准。
+任何等级都不是报价或合同批准。每个 `human_review` 必须保留指定 reviewer，并用用户语言明确表达“人工审批完成前，不得报价、起草/创建订单或签署合同”的完整含义。
