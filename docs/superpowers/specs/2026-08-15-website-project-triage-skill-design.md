@@ -11,6 +11,7 @@ The skill is a decision-support tool. A delivery lead must approve the classific
 ## Language and model portability
 
 - Use an ASCII skill name and a bilingual Chinese/English trigger description so Chinese sales language and English technical terms both match.
+- Trigger examples must include both Chinese and English intent, such as: “网站项目分级、网站需求分级、合同附件建议、website project triage, website scope classification, contract attachment routing.”
 - Write operational guidance in concise Chinese, retain stable English terms such as WebGL, CMS, API, Shader, and output field names, and respond in the user's language.
 - Do not duplicate the complete skill in two languages; full duplication increases context size without improving the A–F decision rules.
 - Keep the core package in plain YAML and Markdown. Treat `agents/openai.yaml` as Codex-specific UI metadata that other orchestrators may ignore.
@@ -206,6 +207,8 @@ Before every classification, require the agent or host to load:
 Load `references/contract-routing.md` when the request mentions a quote, order, contract, hosting, ICP filing, security, source code, personal data, payment, or API. Load `references/anonymized-cases.md` only for adjacent-grade ambiguity or precedent comparison. Load `references/portable-integration.md` only when integrating the skill into a non-Codex host.
 
 If a required reference cannot be loaded, return `ESCALATE` and identify the missing reference rather than improvising a classification.
+
+This loading gate applies equally in Codex and non-Codex hosts. A host may use its own discovery and injection mechanism, but it must load the same mandatory references before asking a model to classify a project.
 
 ## Validation strategy
 
