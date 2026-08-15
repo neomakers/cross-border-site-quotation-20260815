@@ -85,16 +85,16 @@ git commit -m "Record website triage skill baseline failures"
 
 **Files:**
 
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/SKILL.md`
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/agents/openai.yaml`
-- Create directory: `C:/Users/Longer/.codex/skills/website-project-triage/references/`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/SKILL.md`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/agents/openai.yaml`
+- Create directory: `$env:CODEX_HOME/skills/website-project-triage/references/`
 
-- [ ] Confirm that `C:/Users/Longer/.codex/skills/website-project-triage` does not already contain user work; if it exists, inspect and preserve it rather than overwriting.
+- [ ] Confirm that `$env:CODEX_HOME/skills/website-project-triage` does not already contain user work; if it exists, inspect and preserve it rather than overwriting.
 - [ ] Run the official scaffold command:
 
 ```powershell
-python C:/Users/Longer/.codex/skills/.system/skill-creator/scripts/init_skill.py website-project-triage `
-  --path C:/Users/Longer/.codex/skills `
+python $env:CODEX_HOME/skills/.system/skill-creator/scripts/init_skill.py website-project-triage `
+  --path $env:CODEX_HOME/skills `
   --resources references `
   --interface 'display_name=网站项目分级助手 / Website Project Triage' `
   --interface 'short_description=将独立站需求分为 A–F 并路由合同附件；不输出价格。' `
@@ -107,7 +107,7 @@ python C:/Users/Longer/.codex/skills/.system/skill-creator/scripts/init_skill.py
 **Verification:**
 
 ```powershell
-Get-ChildItem -Recurse C:/Users/Longer/.codex/skills/website-project-triage
+Get-ChildItem -Recurse $env:CODEX_HOME/skills/website-project-triage
 ```
 
 Expected: `SKILL.md`, `agents/openai.yaml`, and `references/` exist.
@@ -116,7 +116,7 @@ Expected: `SKILL.md`, `agents/openai.yaml`, and `references/` exist.
 
 **Files:**
 
-- Modify: `C:/Users/Longer/.codex/skills/website-project-triage/SKILL.md`
+- Modify: `$env:CODEX_HOME/skills/website-project-triage/SKILL.md`
 
 - [ ] Write bilingual trigger metadata covering Chinese sales phrases and English terms such as quote, website scope, template, CMS, API, WebGL, and contract routing.
 - [ ] State when the Skill must and must not be used.
@@ -132,7 +132,7 @@ Expected: `SKILL.md`, `agents/openai.yaml`, and `references/` exist.
 **Verification:**
 
 ```powershell
-rg -n "classification-matrix|intake-checklist|NEEDS_INFO|ESCALATE|human_review|不得.*价格|A.*E|F" C:/Users/Longer/.codex/skills/website-project-triage/SKILL.md
+rg -n "classification-matrix|intake-checklist|NEEDS_INFO|ESCALATE|human_review|不得.*价格|A.*E|F" $env:CODEX_HOME/skills/website-project-triage/SKILL.md
 ```
 
 Expected: all gates and required references are explicitly present.
@@ -141,11 +141,11 @@ Expected: all gates and required references are explicitly present.
 
 **Files:**
 
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/references/classification-matrix.md`
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/references/intake-checklist.md`
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/references/contract-routing.md`
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/references/anonymized-cases.md`
-- Create: `C:/Users/Longer/.codex/skills/website-project-triage/references/portable-integration.md`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/references/classification-matrix.md`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/references/intake-checklist.md`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/references/contract-routing.md`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/references/anonymized-cases.md`
+- Create: `$env:CODEX_HOME/skills/website-project-triage/references/portable-integration.md`
 
 - [ ] Put the complete A–F definitions, modifiers, boundary tests, and escalation signals in `classification-matrix.md`.
 - [ ] Put compact sales questions and minimum evidence requirements in `intake-checklist.md`.
@@ -158,9 +158,9 @@ Expected: all gates and required references are explicitly present.
 **Verification:**
 
 ```powershell
-rg -n "A-|A\+|B-|C-|D-|E-|F-|F\+" C:/Users/Longer/.codex/skills/website-project-triage/references/classification-matrix.md
-rg -n "DeepSeek|auto-discover|自动.*发现|reference|ESCALATE" C:/Users/Longer/.codex/skills/website-project-triage/references/portable-integration.md
-rg -n "客户名称|客户域名|联系电话|成交价格|API key|password" C:/Users/Longer/.codex/skills/website-project-triage/references
+rg -n "A-|A\+|B-|C-|D-|E-|F-|F\+" $env:CODEX_HOME/skills/website-project-triage/references/classification-matrix.md
+rg -n "DeepSeek|auto-discover|自动.*发现|reference|ESCALATE" $env:CODEX_HOME/skills/website-project-triage/references/portable-integration.md
+rg -n "客户名称|客户域名|联系电话|成交价格|API key|password" $env:CODEX_HOME/skills/website-project-triage/references
 ```
 
 Expected: classifications and portability rules are present; privacy scan returns no real sensitive data.
@@ -189,8 +189,8 @@ Expected: five explicit verdicts. Do not proceed while a high-risk scenario fail
 
 **Files:**
 
-- Modify: `C:/Users/Longer/.codex/skills/website-project-triage/SKILL.md`
-- Modify as needed: `C:/Users/Longer/.codex/skills/website-project-triage/references/*.md`
+- Modify: `$env:CODEX_HOME/skills/website-project-triage/SKILL.md`
+- Modify as needed: `$env:CODEX_HOME/skills/website-project-triage/references/*.md`
 - Create: `skill-evals/website-project-triage/skill-results-final.md`
 
 - [ ] Patch only the general rule that caused each failure; do not write scenario-specific answers into the Skill.
@@ -211,12 +211,12 @@ Expected: no unresolved `FAIL` entries.
 
 **Files:**
 
-- Validate: `C:/Users/Longer/.codex/skills/website-project-triage/`
+- Validate: `$env:CODEX_HOME/skills/website-project-triage/`
 
 - [ ] Run the official validator:
 
 ```powershell
-python C:/Users/Longer/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/Longer/.codex/skills/website-project-triage
+python $env:CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py $env:CODEX_HOME/skills/website-project-triage
 ```
 
 - [ ] Scan for forbidden prices and private identifiers.
@@ -227,7 +227,7 @@ python C:/Users/Longer/.codex/skills/.system/skill-creator/scripts/quick_validat
 **Verification:**
 
 ```powershell
-rg -n "¥|人民币|内部结算|销售价|利润|折扣" C:/Users/Longer/.codex/skills/website-project-triage
+rg -n "¥|人民币|内部结算|销售价|利润|折扣" $env:CODEX_HOME/skills/website-project-triage
 ```
 
 Expected: validator succeeds and forbidden-price scan returns no matches except a rule explicitly prohibiting prices, if retained.
@@ -254,8 +254,8 @@ Expected: validator succeeds and forbidden-price scan returns no matches except 
 **Verification:**
 
 ```powershell
-python C:/Users/Longer/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/website-project-triage
-git diff --no-index -- C:/Users/Longer/.codex/skills/website-project-triage skills/website-project-triage
+python $env:CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py skills/website-project-triage
+git diff --no-index -- $env:CODEX_HOME/skills/website-project-triage skills/website-project-triage
 git status --short
 ```
 
@@ -282,4 +282,3 @@ git commit -m "Add website project triage skill v1"
 - [ ] Confirm any F result requests backend technical review.
 - [ ] Confirm D/E and sensitive-data cases request the correct technical/security/legal review.
 - [ ] Record the installed path, public GitHub path, version date, and known limitations in the final handoff.
-
