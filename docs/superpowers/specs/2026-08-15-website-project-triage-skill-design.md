@@ -8,6 +8,14 @@ Create a reusable skill that helps non-technical sales staff classify website op
 
 The skill is a decision-support tool. A delivery lead must approve the classification and contract package before quotation or signature.
 
+## Language and model portability
+
+- Use an ASCII skill name and a bilingual Chinese/English trigger description so Chinese sales language and English technical terms both match.
+- Write operational guidance in concise Chinese, retain stable English terms such as WebGL, CMS, API, Shader, and output field names, and respond in the user's language.
+- Do not duplicate the complete skill in two languages; full duplication increases context size without improving the A–F decision rules.
+- Keep the core package in plain YAML and Markdown. Treat `agents/openai.yaml` as Codex-specific UI metadata that other orchestrators may ignore.
+- A non-Codex model does not discover the skill folder automatically. Its host application must match the skill metadata, inject `SKILL.md`, and load required references.
+
 ## Core model
 
 Use one primary frontend/experience class from A through E. Add class F only when the project includes backend or business-system work. Apply `-`, unmodified, or `+` to show difficulty within each class.
@@ -183,9 +191,21 @@ Create a publishable skill named `website-project-triage` with:
 - `references/intake-checklist.md`: required sales questions;
 - `references/contract-routing.md`: attachment selection;
 - `references/anonymized-cases.md`: curated, non-identifying cases;
+- `references/portable-integration.md`: instructions for hosts that call DeepSeek or other models;
 - `agents/openai.yaml`: UI metadata.
 
 Do not include prices or private customer information in the public package. Keep any internal commercial policy outside the skill.
+
+## Reference loading contract
+
+Before every classification, require the agent or host to load:
+
+1. `references/classification-matrix.md`;
+2. `references/intake-checklist.md`.
+
+Load `references/contract-routing.md` when the request mentions a quote, order, contract, hosting, ICP filing, security, source code, personal data, payment, or API. Load `references/anonymized-cases.md` only for adjacent-grade ambiguity or precedent comparison. Load `references/portable-integration.md` only when integrating the skill into a non-Codex host.
+
+If a required reference cannot be loaded, return `ESCALATE` and identify the missing reference rather than improvising a classification.
 
 ## Validation strategy
 
